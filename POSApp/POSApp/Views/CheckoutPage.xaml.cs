@@ -31,5 +31,16 @@ namespace POSApp.Views
             };
             InvoiceWebView.Source = html;
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            PrintOut();
+        }
+
+        private void PrintOut()
+        {
+            var printService = DependencyService.Get<IPrintService>();
+            printService.Print(InvoiceWebView);
+        }
     }
 }

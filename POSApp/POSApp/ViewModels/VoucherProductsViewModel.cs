@@ -20,6 +20,7 @@ namespace POSApp.ViewModels
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command SetupCustomerCommand { get; }
+        public Command PrintCommand { get; }
         public Command<Product> ItemTapped { get; }
 
         public List<Order> Orders { get; set; }
@@ -103,5 +104,7 @@ namespace POSApp.ViewModels
         {
             AppStore.AddToOrderStore(order);
         }
+
+        
     }
 }
