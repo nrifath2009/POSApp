@@ -24,6 +24,12 @@
                  />
             </StackLayout>
             <StackLayout Orientation="Vertical">
+                <Label Margin="20,20,0,0" Text="Stock Left" FontAttributes="Bold" FontSize="Large"
+                 />
+                <Label Margin="20,0,0,0" Text="{Binding Quantity}" FontSize="Large"
+                 />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
                 <Label Margin="20,20,0,0" Text="Product Quantity" FontAttributes="Bold" FontSize="Large"
                  />
                 <Entry Keyboard="Numeric" Margin="20,20,0,0" x:Name="QuantityEntryBox" Placeholder="Quantity"></Entry>

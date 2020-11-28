@@ -53,7 +53,7 @@ namespace POSApp.Views
                 var button = new Button
                 {
                     BackgroundColor = Color.FromHex(AppConstant.PrimaryColor),                    
-                    Text = item.ProductName + Environment.NewLine + item.Price,
+                    Text = item.ProductName + Environment.NewLine + "Price: "+item.Price+Environment.NewLine+"Stock: "+item.Quantity,
                     FontSize = 20,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     VerticalOptions = LayoutOptions.FillAndExpand,

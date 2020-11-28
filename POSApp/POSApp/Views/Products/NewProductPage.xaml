@@ -13,6 +13,8 @@
             <Entry Text="{Binding ProductUnit, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Price" FontSize="Medium" />
             <Editor Keyboard="Numeric" Text="{Binding Price, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Stock in" FontSize="Medium" />
+            <Editor Keyboard="Numeric" Text="{Binding Quantity, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

@@ -7,7 +7,8 @@
              x:Class="POSApp.Views.NewOrderPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New Product" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Add Product" Order="Primary" IconImageSource="user.png" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Setup" Order="Primary" IconImageSource="user.png" Command="{Binding SetupCustomerCommand}" />
     </ContentPage.ToolbarItems>
     
     <ScrollView x:Name="productGridScroller">

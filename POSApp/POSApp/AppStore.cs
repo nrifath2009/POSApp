@@ -6,9 +6,10 @@ using System.Text;
 
 namespace POSApp
 {
-    public class OrderStore
+    public class AppStore
     {
         private static List<Order> _orders = new List<Order>();
+        private static CustomerInfo _customerInfo = new CustomerInfo();
         
         public static void AddToOrderStore(Order order)
         {
@@ -18,6 +19,15 @@ namespace POSApp
         public static List<Order> GetFromOrderStore()
         {
             return _orders.ToList();
+        }
+
+        public static void AddCustomerInfo(CustomerInfo customerInfo)
+        {
+            _customerInfo = customerInfo;
+        }
+        public static CustomerInfo GetCustomerInfo()
+        {
+            return _customerInfo;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace POSApp.Views
                 OrderDate = DateTime.Now,
                 Quantity = productQuantity
             };
-            OrderStore.AddToOrderStore(order);
+            AppStore.AddToOrderStore(order);
             await Navigation.PopModalAsync();
         }
     }

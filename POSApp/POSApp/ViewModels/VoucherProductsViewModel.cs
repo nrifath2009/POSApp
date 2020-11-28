@@ -1,5 +1,6 @@
 ﻿using POSApp.Models;
 using POSApp.ViewModels.Products;
+using POSApp.Views;
 using POSApp.Views.Products;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace POSApp.ViewModels
         public ObservableCollection<Product> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
+        public Command SetupCustomerCommand { get; }
         public Command<Product> ItemTapped { get; }
 
         public List<Order> Orders { get; set; }
@@ -31,11 +33,16 @@ namespace POSApp.ViewModels
             ItemTapped = new Command<Product>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            SetupCustomerCommand = new Command(OnSetupCustomerCommand);
             LoadOrdersFromStore();
+        }
+        public async void OnSetupCustomerCommand()
+        {
+            await Shell.Current.GoToAsync(nameof(SetupCustomerPage));
         }
         public void LoadOrdersFromStore()
         {
-            Orders = OrderStore.GetFromOrderStore() ?? new List<Order>();
+            Orders = AppStore.GetFromOrderStore() ?? new List<Order>();
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -66,7 +73,7 @@ namespace POSApp.ViewModels
             IsBusy = true;
             SelectedItem = null;
             await ExecuteLoadItemsCommand();
-            Orders = OrderStore.GetFromOrderStore() ?? new List<Order>();
+            LoadOrdersFromStore();
         }
 
         public Product SelectedItem
@@ -94,7 +101,7 @@ namespace POSApp.ViewModels
         }
         public void AddToOrderStore(Order order)
         {
-            OrderStore.AddToOrderStore(order);
+            AppStore.AddToOrderStore(order);
         }
     }
 }

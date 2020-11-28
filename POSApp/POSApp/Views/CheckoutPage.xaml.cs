@@ -25,6 +25,11 @@ namespace POSApp.Views
         {
             base.OnAppearing();
             _viewModel.LoadOrdersFromStore();
+            var html = new HtmlWebViewSource
+            {
+                Html = "<h2>Test Web View</h2>"
+            };
+            InvoiceWebView.Source = html;
         }
     }
 }
