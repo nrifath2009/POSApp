@@ -1,4 +1,5 @@
 ﻿using POSApp.Models;
+using POSApp.ViewModels.Products;
 using POSApp.Views.Products;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace POSApp.ViewModels.Products
+namespace POSApp.ViewModels
 {
-    public class ProductsViewModel : BaseViewModel<Product>
+    public class VoucherProductsViewModel : BaseViewModel<Product>
     {
         private Product _selectedItem;
 
@@ -19,15 +20,22 @@ namespace POSApp.ViewModels.Products
         public Command AddItemCommand { get; }
         public Command<Product> ItemTapped { get; }
 
-        public ProductsViewModel()
+        public List<Order> Orders { get; set; }
+
+        public VoucherProductsViewModel()
         {
-            Title = "Products";
+            Title = "Product List";
             Items = new ObservableCollection<Product>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Product>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            LoadOrdersFromStore();
+        }
+        public void LoadOrdersFromStore()
+        {
+            Orders = OrderStore.GetFromOrderStore() ?? new List<Order>();
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -53,10 +61,12 @@ namespace POSApp.ViewModels.Products
             }
         }
 
-        public void OnAppearing()
+        public async void OnAppearing()
         {
             IsBusy = true;
             SelectedItem = null;
+            await ExecuteLoadItemsCommand();
+            Orders = OrderStore.GetFromOrderStore() ?? new List<Order>();
         }
 
         public Product SelectedItem
@@ -81,6 +91,10 @@ namespace POSApp.ViewModels.Products
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?{nameof(ProductDetailViewModel.ItemId)}={item.Id}");
+        }
+        public void AddToOrderStore(Order order)
+        {
+            OrderStore.AddToOrderStore(order);
         }
     }
 }

@@ -2,19 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:POSApp.ViewModels.Products"  
+             xmlns:local="clr-namespace:POSApp.ViewModels"  
              xmlns:model="clr-namespace:POSApp.Models"
-             x:Class="POSApp.Views.Products.ProductListPage">
-
+             x:Class="POSApp.Views.NewOrderPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add New Product" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-    <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
-    <RefreshView x:DataType="local:ProductsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    
+    <ScrollView x:Name="productGridScroller">
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>                        
+            <BoxView Grid.Row="0"
+                 Color="Teal" />
+            <Label Grid.Row="0"
+               Text="Product 1 &#10;Produce Price"
+                   FontSize="18"
+               HorizontalOptions="Center"
+                   TextColor="White"
+               VerticalOptions="Center" />
+            <BoxView Grid.Row="0"
+                 Grid.Column="1"
+                 Color="Purple" />
+            <Label Grid.Row="0"
+               Grid.Column="1"
+               Text="Product 2"
+                   FontSize="18"
+                   TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />            
+        </Grid>
+    </ScrollView>
+    
+
+    <!--<RefreshView x:DataType="local:VoucherProductsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
@@ -32,7 +59,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProductsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:VoucherProductsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
@@ -40,7 +67,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </RefreshView>
-
+    </RefreshView>-->
 </ContentPage>
-    

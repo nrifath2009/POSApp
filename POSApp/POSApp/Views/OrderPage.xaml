@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding ProductName}"             
+             x:Class="POSApp.Views.OrderPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="20">
+            <StackLayout Orientation="Vertical">
+                <Label Margin="20,20,0,0" Text="Product Name" FontAttributes="Bold" FontSize="Large"
+                 />
+                <Label Margin="20,0,0,0" Text="{Binding ProductName}" FontSize="Large"
+                 />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label Margin="20,20,0,0" Text="Product Price" FontAttributes="Bold" FontSize="Large"
+                 />
+                <Label Margin="20,0,0,0" Text="{Binding Price}" FontSize="Large"
+                 />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label Margin="20,20,0,0" Text="Product Unit" FontAttributes="Bold" FontSize="Large"
+                 />
+                <Label Margin="20,0,0,0" Text="{Binding ProductUnit}" FontSize="Large"
+                 />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <Label Margin="20,20,0,0" Text="Product Quantity" FontAttributes="Bold" FontSize="Large"
+                 />
+                <Entry Keyboard="Numeric" Margin="20,20,0,0" x:Name="QuantityEntryBox" Placeholder="Quantity"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="addToItemButton" Clicked="addToItemButton_Clicked" Text="Add to Cart" BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand"></Button>
+                <Button x:Name="closeProductCartModal" Clicked="closeProductCartModal_Clicked" Text="Close" BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

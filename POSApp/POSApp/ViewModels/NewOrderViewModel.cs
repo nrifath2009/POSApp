@@ -4,27 +4,32 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace POSApp.ViewModels.Products
+namespace POSApp.ViewModels
 {
-    public class NewProductViewModel : BaseViewModel<Product>
-    {        
+    public class NewOrderViewModel : BaseViewModel<Order>
+    {
         private string productName;
+        private string productId;
         private decimal price;
-        private int quantity;
-        private string productUnit;
+        private string quantity;
+        private string customerCardNumber;
 
-        public NewProductViewModel()
+        private List<Order> orders;
+
+        public NewOrderViewModel()
         {
+            orders = new List<Order>();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+            AddToOrderListCommand = new Command(OnSave, ValidateSave);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(productName)
-                && !String.IsNullOrWhiteSpace(price.ToString());
+            return !String.IsNullOrWhiteSpace(quantity)
+                && !String.IsNullOrWhiteSpace(customerCardNumber);
         }
 
         public string ProductName
@@ -39,20 +44,27 @@ namespace POSApp.ViewModels.Products
             set => SetProperty(ref price, value);
         }
 
-        public int Quantity
+        public string ProductId
+        {
+            get => productId;
+            set => SetProperty(ref productId, value);
+        }
+
+        public string Quantity
         {
             get => quantity;
             set => SetProperty(ref quantity, value);
         }
-        public string ProductUnit
+        public string CustomerCardNumber
         {
-            get => productUnit;
-            set => SetProperty(ref productUnit, value);
+            get => customerCardNumber;
+            set => SetProperty(ref customerCardNumber, value);
         }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
+        public Command AddToOrderListCommand { get; }
         private async void OnCancel()
         {
             // This will pop the current page off the navigation stack
@@ -61,20 +73,20 @@ namespace POSApp.ViewModels.Products
 
         private async void OnSave()
         {
-            Product newItem = new Product()
+            Order newItem = new Order()
             {
                 Id = Guid.NewGuid().ToString(),
+                ProductId = ProductId,
                 ProductName = ProductName,
                 Quantity = Quantity,
-                Price = Price,
-                ProductUnit = ProductUnit
+                Price = Price
             };
 
-            await DataStore.AddItemAsync(newItem);
+            orders.Add(newItem);
+            // DataStore.AddItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
-    
     }
 }

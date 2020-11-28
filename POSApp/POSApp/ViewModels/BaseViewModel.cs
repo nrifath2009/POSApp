@@ -10,9 +10,9 @@ using POSApp.Services;
 
 namespace POSApp.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel<T> : INotifyPropertyChanged
     {
-        public IDataStore<Product> DataStore => DependencyService.Get<IDataStore<Product>>();
+        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
         bool isBusy = false;
         public bool IsBusy

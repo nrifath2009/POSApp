@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POSApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -7,7 +8,7 @@ using Xamarin.Forms;
 namespace POSApp.ViewModels.Products
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ProductDetailViewModel : BaseViewModel
+    public class ProductDetailViewModel : BaseViewModel<Product>
     {
         private string itemId;
         private string productName;

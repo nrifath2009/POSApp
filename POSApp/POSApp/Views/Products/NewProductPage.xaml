@@ -9,8 +9,10 @@
         <StackLayout Spacing="3" Padding="15">
             <Label Text="Product Name" FontSize="Medium" />
             <Entry Text="{Binding ProductName, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Product Unit" FontSize="Medium" />
+            <Entry Text="{Binding ProductUnit, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Price" FontSize="Medium" />
-            <Editor Text="{Binding Price, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Editor Keyboard="Numeric" Text="{Binding Price, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

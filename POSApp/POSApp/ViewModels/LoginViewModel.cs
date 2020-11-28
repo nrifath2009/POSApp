@@ -1,4 +1,5 @@
-﻿using POSApp.Views;
+﻿using POSApp.Models;
+using POSApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using Xamarin.Forms;
 
 namespace POSApp.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel<Product>
     {
         public Command LoginCommand { get; }
 

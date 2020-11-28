@@ -14,6 +14,7 @@ namespace POSApp
             InitializeComponent();
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
             Routing.RegisterRoute(nameof(NewProductPage), typeof(NewProductPage));
+            Routing.RegisterRoute(nameof(NewOrderPage), typeof(NewOrderPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
