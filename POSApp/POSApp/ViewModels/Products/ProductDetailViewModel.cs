@@ -12,7 +12,7 @@ namespace POSApp.ViewModels.Products
     {
         private string itemId;
         private string productName;
-        private decimal price;
+        private double price;
         private int quantity;
         public string Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace POSApp.ViewModels.Products
             set => SetProperty(ref productName, value);
         }
 
-        public decimal Price
+        public double Price
         {
             get => price;
             set => SetProperty(ref price, value);

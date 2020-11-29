@@ -9,7 +9,7 @@ namespace POSApp.ViewModels.Products
     public class NewProductViewModel : BaseViewModel<Product>
     {        
         private string productName;
-        private decimal price;
+        private double price;
         private int quantity;
         private string productUnit;
 
@@ -33,7 +33,7 @@ namespace POSApp.ViewModels.Products
             set => SetProperty(ref productName, value);
         }
 
-        public decimal Price
+        public double Price
         {
             get => price;
             set => SetProperty(ref price, value);

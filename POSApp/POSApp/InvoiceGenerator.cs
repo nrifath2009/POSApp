@@ -13,7 +13,7 @@ namespace POSApp
         {
             string invoiceString = "<p>Test Invoice Print For Today</p>";
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(InvoiceGenerator)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream("POSApp.invoice.html");
+            Stream stream = assembly.GetManifestResourceStream("POSApp.invoice2.html");
             string text = "";
             using (var reader = new System.IO.StreamReader(stream))
             {
@@ -26,14 +26,14 @@ namespace POSApp
             text = text.Replace("{{VOUCHERLIMIT}}", customerInfo.VoucherLimit.ToString());
 
             string tBodyContent = string.Empty;
-            decimal totalAmount = 0;
+            double totalAmount = 0;
             foreach (var item in orders)
             {
-                tBodyContent += $"<tr><td  style='font-weight:bold;border-bottom:2px dotted;'>{item.ProductNameWithUnit}</td><td style='border-bottom:2px dotted;'>{item.Quantity} {item.ProductUnit}</td><td style='border-bottom:2px dotted;'>{item.CalculatedPrice}</td></tr>";
-                totalAmount += (int.Parse(item.Quantity)*item.Price);
+                tBodyContent += $"<tr><td class='description'>{item.ProductNameWithUnit}</td><td class='quantity'>{item.Quantity} {item.ProductUnit}</td><td class='price'>{item.CalculatedPrice}</td></tr>";
+                totalAmount += (item.Quantity*item.Price);
             }
 
-            string totalValue = $"<tr><td>Total: </td><td></td><td>{totalAmount}</td></tr>";
+            string totalValue = $"<tr><td class='description'>Total</td><td class='quantity'></td><td class='price'>{totalAmount}</td></tr>";
             tBodyContent += totalValue;
 
             string orderDate = $"<tr><td>Date: </td><td></td><td>{DateTime.Now.Date.ToString("dd-MM-yyyy")}</td></tr>";

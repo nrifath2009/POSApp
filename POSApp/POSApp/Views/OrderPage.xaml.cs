@@ -31,7 +31,7 @@ namespace POSApp.Views
         private async void addToItemButton_Clicked(object sender, EventArgs e)
         {
             ProductQuantity = QuantityEntryBox.Text;
-            var productQuantity = ProductQuantity;
+            var productQuantity = int.Parse(ProductQuantity);
             var order = new Order
             {
                 Price = productSelected.Price,
@@ -48,17 +48,29 @@ namespace POSApp.Views
             {
                 if (customerOrders != null)
                 {
-                    var customerTotal = customerOrders.Sum(c => int.Parse(c.Quantity) * c.Price);
+                    var customerTotal = customerOrders.Sum(c => c.Quantity * c.Price);
                     var limitLeft = customerInfo.VoucherLimit - customerTotal;
-                    if(customerTotal+(order.Price*int.Parse(order.Quantity)) > customerInfo.VoucherLimit)
+                    if(customerTotal+(order.Price*order.Quantity) > customerInfo.VoucherLimit)
                     {
                         await DisplayAlert("Voucher Limit Reached", $"Voucher Limit {customerInfo.VoucherLimit} will be cross if add this item. you can add more up to {limitLeft} BDT","OK");
                         return;
                     }
                 }
             }
-
-            AppStore.AddToOrderStore(order);
+            var productExist = AppStore.GetFromOrderStore();
+            if(productExist!=null && productExist.Any(c => c.ProductId == order.ProductId))
+            {
+                var oldItem = productExist.FirstOrDefault(c => c.ProductId == order.ProductId);
+                if (oldItem != null)
+                {
+                    oldItem.Quantity += order.Quantity;
+                }
+            }
+            else
+            {
+                AppStore.AddToOrderStore(order);
+            }
+            
             await Navigation.PopModalAsync();
         }
     }

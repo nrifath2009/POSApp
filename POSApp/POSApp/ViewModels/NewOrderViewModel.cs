@@ -10,8 +10,8 @@ namespace POSApp.ViewModels
     {
         private string productName;
         private string productId;
-        private decimal price;
-        private string quantity;
+        private double price;
+        private int quantity;
         private string customerCardNumber;
 
         private List<Order> orders;
@@ -28,7 +28,7 @@ namespace POSApp.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(quantity)
+            return !String.IsNullOrWhiteSpace(quantity.ToString())
                 && !String.IsNullOrWhiteSpace(customerCardNumber);
         }
 
@@ -38,7 +38,7 @@ namespace POSApp.ViewModels
             set => SetProperty(ref productName, value);
         }
 
-        public decimal Price
+        public double Price
         {
             get => price;
             set => SetProperty(ref price, value);
@@ -50,7 +50,7 @@ namespace POSApp.ViewModels
             set => SetProperty(ref productId, value);
         }
 
-        public string Quantity
+        public int Quantity
         {
             get => quantity;
             set => SetProperty(ref quantity, value);

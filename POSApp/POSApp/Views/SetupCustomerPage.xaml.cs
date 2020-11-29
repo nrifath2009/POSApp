@@ -23,7 +23,7 @@ namespace POSApp.Views
             CustomerInfo customerInfo = new CustomerInfo();
             customerInfo.CustomerId =  CustomerIdEntryBox.Text;
             customerInfo.FamilySize = int.Parse(FamilySizeEntryBox.Text);
-            customerInfo.VoucherLimit = decimal.Parse(VoucherLimitEntryBox.Text);
+            customerInfo.VoucherLimit = double.Parse(VoucherLimitEntryBox.Text);
             AppStore.AddCustomerInfo(customerInfo);
             await Navigation.PopModalAsync();
         }

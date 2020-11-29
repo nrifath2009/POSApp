@@ -6,11 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FodyWeavers.xml" />
     <None Remove="invoice.html" />
+    <None Remove="invoice2.html" />
     <None Remove="user.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="invoice2.html" />
     <EmbeddedResource Include="invoice.html" />
   </ItemGroup>
 
@@ -19,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Realm" Version="5.1.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
     <PackageReference Include="XF.Bluetooth.Printer.Plugin" Version="1.0.0" />

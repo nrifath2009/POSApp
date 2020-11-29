@@ -19,15 +19,15 @@ namespace POSApp.Models
                 return ProductName + Environment.NewLine +" - "+ Price + $" (BDT/{ProductUnit})";
             }
         }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public string CalculatedPrice
         {
             get
             {
-                return (Price * int.Parse(Quantity)).ToString();
+                return (Price * Quantity).ToString();
             }
         }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public DateTime OrderDate { get; set; }
 
 
