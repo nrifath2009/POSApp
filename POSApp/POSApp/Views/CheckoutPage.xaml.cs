@@ -37,11 +37,19 @@ namespace POSApp.Views
             PrintOut();
         }
 
-        private void PrintOut()
+        private async void PrintOut()
         {
             var printService = DependencyService.Get<IPrintService>();
             printService.Print(InvoiceWebView);
             //printService.PrintText(InvoiceGenerator.GetInvoice());
+            //await Shell.Current.GoToAsync("..");
+        }
+
+        private async void resetButton_Clicked(object sender, EventArgs e)
+        {
+            AppStore.ResetAfterPrint();
+            await Shell.Current.GoToAsync("..");
+            await DisplayAlert("Reset", "Reset Successfully","OK");
         }
     }
 }

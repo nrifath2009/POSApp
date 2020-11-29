@@ -29,12 +29,21 @@ namespace POSApp
             decimal totalAmount = 0;
             foreach (var item in orders)
             {
-                tBodyContent += $"<tr><td>{item.ProductNameWithUnit}</td><td>{item.Quantity} {item.ProductUnit}</td><td>{item.CalculatedPrice}</td></tr>";
+                tBodyContent += $"<tr><td  style='font-weight:bold;border-bottom:2px dotted;'>{item.ProductNameWithUnit}</td><td style='border-bottom:2px dotted;'>{item.Quantity} {item.ProductUnit}</td><td style='border-bottom:2px dotted;'>{item.CalculatedPrice}</td></tr>";
                 totalAmount += (int.Parse(item.Quantity)*item.Price);
             }
 
-            string totalValue = $"<tr><td>Total: </td><td></td><td>{totalAmount} BDT</td></tr>";
+            string totalValue = $"<tr><td>Total: </td><td></td><td>{totalAmount}</td></tr>";
             tBodyContent += totalValue;
+
+            string orderDate = $"<tr><td>Date: </td><td></td><td>{DateTime.Now.Date.ToString("dd-MM-yyyy")}</td></tr>";
+            string orderTime = $"<tr><td>Time: </td><td></td><td>{DateTime.Now.ToShortTimeString()}</td></tr>";
+
+            string spaces = @"<p class='section-width' style='border-bottom: 2px dotted;'></p>";
+
+            tBodyContent += spaces;
+            tBodyContent += orderDate;
+            tBodyContent += orderTime;
 
             text = text.Replace("{{TBODY}}", tBodyContent);
             return text;

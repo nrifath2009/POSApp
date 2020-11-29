@@ -24,7 +24,7 @@ namespace POSApp.Models
         {
             get
             {
-                return (Price * int.Parse(Quantity)).ToString()+" BDT";
+                return (Price * int.Parse(Quantity)).ToString();
             }
         }
         public string Quantity { get; set; }

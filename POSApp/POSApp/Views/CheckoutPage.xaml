@@ -8,6 +8,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Print" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem x:Name="resetButton" Text="Reset" Clicked="resetButton_Clicked" />
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.

@@ -92,15 +92,25 @@ namespace POSApp.Views
 
         private async void OnProductSelectButton_Clicked(object sender, EventArgs e)
         {
-            var selectedProduct  =  sender as Button;
-            if (selectedProduct != null)
+            if(AppStore.GetCustomerInfo()!=null 
+                && !string.IsNullOrEmpty(AppStore.GetCustomerInfo().CustomerId)
+                && !string.IsNullOrEmpty(AppStore.GetCustomerInfo().VoucherLimit.ToString()))
             {
-                var productSelected =  selectedProduct.BindingContext as Product;
-                var orderPage = new OrderPage(productSelected);
-                await Navigation.PushModalAsync(orderPage);
-                
-                //await DisplayAlert("Selected Product", productSelected.ProductName,"Close");
+                var selectedProduct = sender as Button;
+                if (selectedProduct != null)
+                {
+                    var productSelected = selectedProduct.BindingContext as Product;
+                    var orderPage = new OrderPage(productSelected);
+                    await Navigation.PushModalAsync(orderPage);
+
+                    //await DisplayAlert("Selected Product", productSelected.ProductName,"Close");
+                }
             }
+            else
+            {
+                await DisplayAlert("Setup Voucher Limit", "Set voucher limit and other info first from setup", "Ok");
+            }
+            
 
         }
 
@@ -116,6 +126,19 @@ namespace POSApp.Views
         private async void setupToolBar_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new SetupCustomerPage());
+        }
+
+        private async void checkoutButton_Clicked(object sender, EventArgs e)
+        {
+            if(AppStore.GetFromOrderStore().Count > 0)
+            {
+                await Navigation.PushAsync(new CheckoutPage());
+            }
+            else
+            {
+                await DisplayAlert("Checkout", "No items added to checkout", "Ok");
+            }
+            
         }
     }
 }

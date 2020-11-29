@@ -5,41 +5,46 @@
              xmlns:local="clr-namespace:POSApp.ViewModels"  
              xmlns:model="clr-namespace:POSApp.Models"
              x:Class="POSApp.Views.NewOrderPage">
-
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Product" Order="Primary" IconImageSource="user.png" Command="{Binding AddItemCommand}" />
         <ToolbarItem x:Name="setupToolBar" Text="Setup" Order="Primary" Clicked="setupToolBar_Clicked" IconImageSource="user.png" />
     </ContentPage.ToolbarItems>
-    
-    <ScrollView x:Name="productGridScroller">
-        <Grid Margin="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="150" />                
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>                        
-            <BoxView Grid.Row="0"
+
+    <StackLayout>
+        <ScrollView x:Name="productGridScroller">
+            <Grid Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Row="0"
                  Color="Teal" />
-            <Label Grid.Row="0"
+                <Label Grid.Row="0"
                Text="Product 1 &#10;Produce Price"
                    FontSize="18"
                HorizontalOptions="Center"
                    TextColor="White"
                VerticalOptions="Center" />
-            <BoxView Grid.Row="0"
+                <BoxView Grid.Row="0"
                  Grid.Column="1"
                  Color="Purple" />
-            <Label Grid.Row="0"
+                <Label Grid.Row="0"
                Grid.Column="1"
                Text="Product 2"
                    FontSize="18"
                    TextColor="White"
                HorizontalOptions="Center"
-               VerticalOptions="Center" />            
-        </Grid>
-    </ScrollView>
+               VerticalOptions="Center" />
+            </Grid>
+        </ScrollView>
+        <Button x:Name="checkoutButton" VerticalOptions="EndAndExpand" Margin="0,10,0,10" Clicked="checkoutButton_Clicked" Text="Checkout" BackgroundColor="{StaticResource Primary}"></Button>
+    </StackLayout>
+    
+    
     
 
     <!--<RefreshView x:DataType="local:VoucherProductsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

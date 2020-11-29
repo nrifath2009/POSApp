@@ -83,7 +83,7 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <!--<ShellContent Title="New Voucher" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:SetupCustomerPage}" />-->
         <ShellContent Title="Voucher" Icon="tab_feed.png"  ContentTemplate="{DataTemplate local:NewOrderPage}" />        
-        <ShellContent Title="Checkout" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:CheckoutPage}" />        
+        <!--<ShellContent Title="Checkout" Icon="tab_feed.png" ContentTemplate="{DataTemplate local:CheckoutPage}" />-->        
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

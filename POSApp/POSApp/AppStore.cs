@@ -21,6 +21,12 @@ namespace POSApp
             return _orders.ToList();
         }
 
+        public static void ResetAfterPrint()
+        {
+            _orders = new List<Order>();
+            _customerInfo = new CustomerInfo();
+        }
+
         public static void AddCustomerInfo(CustomerInfo customerInfo)
         {
             _customerInfo = customerInfo;
