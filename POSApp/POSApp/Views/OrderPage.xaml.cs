@@ -38,8 +38,26 @@ namespace POSApp.Views
                 ProductName = productSelected.ProductName,
                 ProductId = productSelected.Id,
                 OrderDate = DateTime.Now,
-                Quantity = productQuantity
+                Quantity = productQuantity,
+                ProductUnit = productSelected.ProductUnit
             };
+
+            var customerInfo =  AppStore.GetCustomerInfo();
+            var customerOrders = AppStore.GetFromOrderStore();
+            if (customerInfo != null)
+            {
+                if (customerOrders != null)
+                {
+                    var customerTotal = customerOrders.Sum(c => int.Parse(c.Quantity) * c.Price);
+                    var limitLeft = customerInfo.VoucherLimit - customerTotal;
+                    if(customerTotal+(order.Price*int.Parse(order.Quantity)) > customerInfo.VoucherLimit)
+                    {
+                        await DisplayAlert("Voucher Limit Reached", $"Voucher Limit {customerInfo.VoucherLimit} will be cross if add this item. you can add more up to {limitLeft} BDT","OK");
+                        return;
+                    }
+                }
+            }
+
             AppStore.AddToOrderStore(order);
             await Navigation.PopModalAsync();
         }

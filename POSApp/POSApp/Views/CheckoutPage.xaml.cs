@@ -27,7 +27,7 @@ namespace POSApp.Views
             _viewModel.LoadOrdersFromStore();
             var html = new HtmlWebViewSource
             {
-                Html = "<h2>Test Web View</h2>"
+                Html = InvoiceGenerator.GetInvoice(_viewModel.Orders)
             };
             InvoiceWebView.Source = html;
         }
@@ -41,6 +41,7 @@ namespace POSApp.Views
         {
             var printService = DependencyService.Get<IPrintService>();
             printService.Print(InvoiceWebView);
+            //printService.PrintText(InvoiceGenerator.GetInvoice());
         }
     }
 }

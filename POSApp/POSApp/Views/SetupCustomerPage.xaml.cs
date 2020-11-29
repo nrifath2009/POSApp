@@ -25,12 +25,12 @@ namespace POSApp.Views
             customerInfo.FamilySize = int.Parse(FamilySizeEntryBox.Text);
             customerInfo.VoucherLimit = decimal.Parse(VoucherLimitEntryBox.Text);
             AppStore.AddCustomerInfo(customerInfo);
-            await Shell.Current.GoToAsync(nameof(NewOrderPage));
+            await Navigation.PopModalAsync();
         }
 
-        private void closeButton_Clicked(object sender, EventArgs e)
+        private async void closeButton_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PopModalAsync();
         }
     }
 }

@@ -79,7 +79,7 @@ namespace POSApp.ViewModels
                 ProductId = ProductId,
                 ProductName = ProductName,
                 Quantity = Quantity,
-                Price = Price
+                Price = Price                
             };
 
             orders.Add(newItem);

@@ -11,7 +11,22 @@ namespace POSApp.Models
         public string CustomerCardNumber { get; set; }
         public string ProductId { get; set; }
         public string ProductName { get; set; }
+        public string ProductUnit { get; set; }
+        public string ProductNameWithUnit
+        {
+            get
+            {
+                return ProductName + Environment.NewLine +" - "+ Price + $" (BDT/{ProductUnit})";
+            }
+        }
         public decimal Price { get; set; }
+        public string CalculatedPrice
+        {
+            get
+            {
+                return (Price * int.Parse(Quantity)).ToString()+" BDT";
+            }
+        }
         public string Quantity { get; set; }
         public DateTime OrderDate { get; set; }
 

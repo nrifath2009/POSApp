@@ -110,5 +110,12 @@ namespace POSApp.Views
             _viewModel.OnAppearing();
             LoadGridData(16);
         }
+
+        
+
+        private async void setupToolBar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new SetupCustomerPage());
+        }
     }
 }

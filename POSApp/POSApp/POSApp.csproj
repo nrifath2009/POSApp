@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="invoice.html" />
     <None Remove="user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="invoice.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,7 +20,8 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="XF.Bluetooth.Printer.Plugin" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
